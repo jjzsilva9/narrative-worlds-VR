@@ -10,14 +10,10 @@ public class LobbyUIManager : MonoBehaviour
 {
     [Header("UI Panels")]
     [Tooltip("The title/welcome screen panel with the 'Enter' button")]
-    [SerializeField] private CanvasGroup titlePanel;
+    [SerializeField] private GameObject titlePanel;
 
     [Tooltip("The environment selection panel with scene buttons")]
-    [SerializeField] private CanvasGroup environmentPanel;
-
-    [Header("Transition Settings")]
-    [Tooltip("How long UI fade transitions take in seconds")]
-    [SerializeField] private float uiFadeDuration = 0.8f;
+    [SerializeField] private GameObject environmentPanel;
 
     [Header("Screen Fade")]
     [Tooltip("A full-screen CanvasGroup used for fading to/from black")]
@@ -35,16 +31,12 @@ public class LobbyUIManager : MonoBehaviour
 
     [Header("Scene Names")]
     [Tooltip("Scene names for each environment - must match Build Settings")]
-    [SerializeField] private string rivendellSceneName = "Rivendell";
-    [SerializeField] private string thirdSceneName = "ThirdEnvironment"; // TODO: Replace with actual third environment name
+    [SerializeField] private string gollumsCaveSceneName = "GollumsCave";
+    [SerializeField] private string mordorSceneName = "Mordor";
 
-    // TODO: References to audio/particle systems to be wired up later
-    [Header("Polish - Wire Up Later")]
+    [Header("Audio")]
     [Tooltip("Ambient audio source that fades in when entering the Shire")]
     [SerializeField] private AudioSource ambientAudioSource;
-
-    [Tooltip("Particle systems to enable when entering the Shire (e.g. fireflies, leaves)")]
-    [SerializeField] private ParticleSystem[] shireParticleSystems;
 
     [Tooltip("Shire soundtrack audio source")]
     [SerializeField] private AudioSource musicAudioSource;
@@ -52,16 +44,22 @@ public class LobbyUIManager : MonoBehaviour
     [Tooltip("How long the audio takes to fade in")]
     [SerializeField] private float audioFadeDuration = 2.0f;
 
+    [Header("Effects")]
+    [Tooltip("Particle systems to enable when entering the Shire (e.g. fireflies, leaves)")]
+    [SerializeField] private ParticleSystem[] shireParticleSystems;
+
     private void Start()
     {
         // Ensure correct initial state
-        SetCanvasGroupState(titlePanel, true);
-        SetCanvasGroupState(environmentPanel, false);
-        SetCanvasGroupState(screenFadeOverlay, false);
+        titlePanel.SetActive(true);
+        environmentPanel.SetActive(false);
 
         // Make sure screen fade overlay is fully transparent at start
         if (screenFadeOverlay != null)
+        {
             screenFadeOverlay.alpha = 0f;
+            screenFadeOverlay.gameObject.SetActive(false);
+        }
 
         // Disable particles at start
         if (shireParticleSystems != null)
@@ -86,11 +84,11 @@ public class LobbyUIManager : MonoBehaviour
 
     /// <summary>
     /// Called when the user presses "Enter" on the title screen.
-    /// Fades out the title panel and fades in the environment selection panel.
+    /// Hides the title panel and shows the environment selection panel.
     /// </summary>
     public void OnEnterPressed()
     {
-        StartCoroutine(TransitionTitleToEnvironmentSelect());
+        TransitionTitleToEnvironmentSelect();
     }
 
     /// <summary>
@@ -103,21 +101,21 @@ public class LobbyUIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when the user selects "Rivendell" button.
-    /// Fades to black and loads the Rivendell scene.
+    /// Called when the user selects "Gollum's Cave" button.
+    /// Fades to black and loads the Gollum's Cave scene.
     /// </summary>
-    public void OnRivendellSelected()
+    public void OnGollumsCaveSelected()
     {
-        StartCoroutine(LoadSceneTransition(rivendellSceneName));
+        StartCoroutine(LoadSceneTransition(gollumsCaveSceneName));
     }
 
     /// <summary>
-    /// Called when the user selects the third environment button.
-    /// Fades to black and loads that scene.
+    /// Called when the user selects "Mordor" button.
+    /// Fades to black and loads the Mordor scene.
     /// </summary>
-    public void OnThirdEnvironmentSelected()
+    public void OnMordorSelected()
     {
-        StartCoroutine(LoadSceneTransition(thirdSceneName));
+        StartCoroutine(LoadSceneTransition(mordorSceneName));
     }
 
     // ─────────────────────────────────────────────
@@ -125,18 +123,12 @@ public class LobbyUIManager : MonoBehaviour
     // ─────────────────────────────────────────────
 
     /// <summary>
-    /// Fades out title screen, fades in environment selection.
+    /// Hides title screen, shows environment selection.
     /// </summary>
-    private IEnumerator TransitionTitleToEnvironmentSelect()
+    private void TransitionTitleToEnvironmentSelect()
     {
-        // Fade out title
-        yield return StartCoroutine(FadeCanvasGroup(titlePanel, 1f, 0f, uiFadeDuration));
-        SetCanvasGroupState(titlePanel, false);
-
-        // Fade in environment selection
-        SetCanvasGroupState(environmentPanel, true);
-        environmentPanel.alpha = 0f;
-        yield return StartCoroutine(FadeCanvasGroup(environmentPanel, 0f, 1f, uiFadeDuration));
+        titlePanel.SetActive(false);
+        environmentPanel.SetActive(true);
     }
 
     /// <summary>
@@ -149,7 +141,7 @@ public class LobbyUIManager : MonoBehaviour
         yield return StartCoroutine(FadeScreen(0f, 1f, screenFadeDuration));
 
         // While screen is black: hide the UI
-        SetCanvasGroupState(environmentPanel, false);
+        environmentPanel.SetActive(false);
 
         // Spawn the book
         SpawnBook();
@@ -234,26 +226,6 @@ public class LobbyUIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Fades a CanvasGroup's alpha from one value to another over a duration.
-    /// </summary>
-    private IEnumerator FadeCanvasGroup(CanvasGroup cg, float from, float to, float duration)
-    {
-        if (cg == null) yield break;
-
-        float elapsed = 0f;
-        cg.alpha = from;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            cg.alpha = Mathf.Lerp(from, to, elapsed / duration);
-            yield return null;
-        }
-
-        cg.alpha = to;
-    }
-
-    /// <summary>
     /// Fades the screen overlay (black screen) from one alpha to another.
     /// </summary>
     private IEnumerator FadeScreen(float from, float to, float duration)
@@ -282,15 +254,4 @@ public class LobbyUIManager : MonoBehaviour
             screenFadeOverlay.gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Sets a CanvasGroup to be visible/interactive or hidden/non-interactive.
-    /// </summary>
-    private void SetCanvasGroupState(CanvasGroup cg, bool active)
-    {
-        if (cg == null) return;
-
-        cg.alpha = active ? 1f : 0f;
-        cg.interactable = active;
-        cg.blocksRaycasts = active;
-    }
 }
