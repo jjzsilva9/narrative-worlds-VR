@@ -1,0 +1,3 @@
+Beginning,0
+Middle,60
+End,148.5
