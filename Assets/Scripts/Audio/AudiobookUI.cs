@@ -75,11 +75,11 @@ public class AudiobookUI : MonoBehaviour
     [SerializeField] private GameObject loadingOverlay;
 
     [Header("Icons")]
-    [SerializeField] private string iconPlay    = "▶";
-    [SerializeField] private string iconPause   = "⏸";
-    [SerializeField] private string iconPlaying = "●";  // indicator for active file in list
-    [SerializeField] private string iconChapter = "▸";  // authored chapter prefix
-    [SerializeField] private string iconBookmark= "★";  // user bookmark prefix
+    [SerializeField] private string iconPlay    = ">";
+    [SerializeField] private string iconPause   = "||";  // ASCII pause
+    [SerializeField] private string iconPlaying = "*";  // indicator for active file in list
+    [SerializeField] private string iconChapter = "-";  // authored chapter prefix
+    [SerializeField] private string iconBookmark = "[B]"; // user bookmark prefix
 
     // ─── Private State ────────────────────────────────────────────────────────
 
@@ -170,7 +170,7 @@ public class AudiobookUI : MonoBehaviour
     private void HandleFileLoadFailed()
     {
         ShowLoading(false);
-        if (nowPlayingLabel != null) nowPlayingLabel.text = "⚠ Failed to load file";
+        if (nowPlayingLabel != null) nowPlayingLabel.text = "[!] Failed to load file";
     }
 
     private void HandleChaptersLoaded(List<AudiobookPlayer.BookmarkEntry> chapters)
@@ -297,16 +297,37 @@ public class AudiobookUI : MonoBehaviour
             var rowBtn = row.GetComponent<Button>();
             rowBtn?.onClick.AddListener(() => _player.JumpToEntry(captured));
 
-            // Delete button — only shown for user bookmarks
-            var deleteBtn = row.transform.Find("DeleteButton")?.GetComponent<Button>();
+            // Delete button — find any child Button that isn't the row root itself,
+            // so this works regardless of what name the prefab uses.
+            Button deleteBtn = null;
+            foreach (var b in row.GetComponentsInChildren<Button>(includeInactive: true))
+            {
+                if (b.gameObject != row)   // skip the row's own Button
+                {
+                    deleteBtn = b;
+                    break;
+                }
+            }
+
             if (deleteBtn != null)
             {
-                deleteBtn.gameObject.SetActive(entry.IsUserBookmark);
+                // Use CanvasGroup so the button is invisible but still occupies layout space
+                var cg = deleteBtn.GetComponent<CanvasGroup>();
+                if (cg == null) cg = deleteBtn.gameObject.AddComponent<CanvasGroup>();
+                cg.alpha          = entry.IsUserBookmark ? 1f : 0f;
+                cg.interactable   = entry.IsUserBookmark;
+                cg.blocksRaycasts = entry.IsUserBookmark;
+
                 deleteBtn.onClick.AddListener(() =>
                 {
                     _player.RemoveBookmark(captured);
                     // List rebuilds automatically via OnBookmarksChanged
                 });
+            }
+            else
+            {
+                Debug.LogWarning("[AudiobookUI] bookmarkRowPrefab has no child Button for delete. " +
+                                 "Add a child Button to the prefab.");
             }
         }
     }
