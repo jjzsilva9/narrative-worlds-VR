@@ -81,7 +81,7 @@ Toggled via XRI menu button. Provides "Return to Lobby" and master volume contro
 
 ## Project Setup
 
-- Unity version: *(add version here)*
+- Unity version: *6000.2.2f1* 
 - XR Plugin: OpenXR / XR Interaction Toolkit
 - TextMesh Pro required (already in project)
 - No additional packages needed for the audio system
