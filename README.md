@@ -14,6 +14,11 @@ A VR experience set in Tolkien's Middle-earth, built with Unity + XR Interaction
 ### Morgan — Gollum's Cave
 > *[Morgan: add your environment notes here — assets used, setup steps, anything teammates need to know]*
 
+going to use the enviroment low poly fits the theme, should be good
+https://sketchfab.com/3d-models/cave-rocks-ea11069c86ce410d8c8e7423d87344de
+
+book system is implemented, has a prev and next button which access a function made in a vrbookcontroller script with change to a different pages txt using the TMP funcitonality. book has a rigid body and xr interactable attached to the book body.
+
 ---
 
 ### Jaden — Battle Scene / Mordor
