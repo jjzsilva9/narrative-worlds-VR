@@ -32,6 +32,19 @@ public class VRBookController : MonoBehaviour
         }
     }
 
+    public void SetPages(string[] newPages)
+    {
+        pages = newPages;
+        currentPage = 0;
+        ShowPage();
+    }
+
+    public void ResetBook()
+    {
+        currentPage = 0;
+        ShowPage();
+    }
+
     public void NextPage()
     {
         if (pages == null || pages.Length == 0) return;
@@ -54,7 +67,7 @@ public class VRBookController : MonoBehaviour
         }
     }
 
-    void ShowPage()
+    private void ShowPage()
     {
         if (pageText == null) return;
 
