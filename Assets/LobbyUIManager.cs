@@ -31,7 +31,7 @@ public class LobbyUIManager : MonoBehaviour
 
     [Header("Scene Names")]
     [Tooltip("Scene names for each environment - must match Build Settings")]
-    [SerializeField] private string gollumsCaveSceneName = "GollumsCave";
+    [SerializeField] private string gollumsCaveSceneName = "GollumCave";
     [SerializeField] private string mordorSceneName = "Mordor";
 
     [Header("Audio")]
@@ -90,6 +90,11 @@ public class LobbyUIManager : MonoBehaviour
     {
         TransitionTitleToEnvironmentSelect();
     }
+
+    public void OnQuitPressed()
+{
+    Application.Quit();
+}
 
     /// <summary>
     /// Called when the user selects "The Shire" button.
