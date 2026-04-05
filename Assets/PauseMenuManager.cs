@@ -11,8 +11,15 @@ using UnityEngine.SceneManagement;
 public class PauseMenuManager : MonoBehaviour
 {
     [Header("UI")]
-    [Tooltip("The pause menu panel (should have a CanvasGroup component)")]
-    [SerializeField] private CanvasGroup pauseMenuPanel;
+    [Tooltip("The pause menu panel")]
+    [SerializeField] private GameObject pauseMenuPanel;
+
+    [Header("Positioning")]
+    [Tooltip("The main camera (XR headset). If not assigned, will find Camera.main at start")]
+    [SerializeField] private Camera playerCamera;
+
+    [Tooltip("How far in front of the user the menu spawns (in meters)")]
+    [SerializeField] private float spawnDistance = 1.5f;
 
     [Header("Input")]
     [Tooltip("Input action reference for the menu button (e.g. XRI LeftHand/Menu Button)")]
@@ -46,8 +53,12 @@ public class PauseMenuManager : MonoBehaviour
 
     private void Start()
     {
+        // Find camera if not assigned
+        if (playerCamera == null)
+            playerCamera = Camera.main;
+
         // Hide pause menu at start
-        SetCanvasGroupState(pauseMenuPanel, false);
+        pauseMenuPanel.SetActive(false);
 
         if (screenFadeOverlay != null)
         {
@@ -64,9 +75,38 @@ public class PauseMenuManager : MonoBehaviour
     public void TogglePauseMenu()
     {
         isPaused = !isPaused;
-        SetCanvasGroupState(pauseMenuPanel, isPaused);
+
+        if (isPaused)
+        {
+            PositionInFrontOfUser();
+            pauseMenuPanel.SetActive(true);
+        }
+        else
+        {
+            pauseMenuPanel.SetActive(false);
+        }
 
         // TODO: Optionally pause/reduce audio when paused
+    }
+
+    /// <summary>
+    /// Positions the pause menu panel in front of the user's current view direction.
+    /// </summary>
+    private void PositionInFrontOfUser()
+    {
+        if (playerCamera == null) return;
+
+        // Get the camera's forward direction but keep it level (ignore vertical tilt)
+        Vector3 forward = playerCamera.transform.forward;
+        forward.y = 0f;
+        forward.Normalize();
+
+        // Place the panel in front of the user at eye height
+        Vector3 spawnPosition = playerCamera.transform.position + forward * spawnDistance;
+        pauseMenuPanel.transform.position = spawnPosition;
+
+        // Rotate the panel to face the user
+        pauseMenuPanel.transform.rotation = Quaternion.LookRotation(forward);
     }
 
     /// <summary>
@@ -90,8 +130,8 @@ public class PauseMenuManager : MonoBehaviour
 
     private IEnumerator ReturnToLobbyTransition()
     {
-        // Disable menu interaction so the user can't double-tap
-        pauseMenuPanel.interactable = false;
+        // Disable menu so the user can't double-tap
+        pauseMenuPanel.SetActive(false);
 
         // Fade to black
         if (screenFadeOverlay != null)
@@ -111,12 +151,4 @@ public class PauseMenuManager : MonoBehaviour
         SceneManager.LoadScene(lobbySceneName);
     }
 
-    private void SetCanvasGroupState(CanvasGroup cg, bool active)
-    {
-        if (cg == null) return;
-
-        cg.alpha = active ? 1f : 0f;
-        cg.interactable = active;
-        cg.blocksRaycasts = active;
-    }
 }
