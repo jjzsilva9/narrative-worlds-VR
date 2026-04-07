@@ -8,6 +8,6 @@
 
 -
 
-## Jaden's Environment (Battle Scene, idk yet)
+## Jaden's Environment (Battlefield wasteland)
 
--
+- "Battlefield" by Sketchfab user manungue (CC BY 4.0): https://sketchfab.com/3d-models/battlefield-5997f40650cf4d3aa4bdb30b24192977
