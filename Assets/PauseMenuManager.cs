@@ -14,6 +14,16 @@ public class PauseMenuManager : MonoBehaviour
     [Tooltip("The pause menu panel")]
     [SerializeField] private GameObject pauseMenuPanel;
 
+    [Tooltip("The audiobook player panel (AudiobookPlayerRoot prefab). Leave unassigned to disable.")]
+    [SerializeField] private GameObject audiobookPlayerPanel;
+
+    [Tooltip("Horizontal distance (meters) between the main menu and the audiobook panel")]
+    [SerializeField] private float audiobookPanelOffset = 0.6f;
+
+    [Tooltip("Spawn the audiobook panel to the right of the main menu (unchecked = left)")]
+    [SerializeField] private bool audiobookPanelOnRight = true;
+
+
     [Header("Positioning")]
     [Tooltip("The main camera (XR headset). If not assigned, will find Camera.main at start")]
     [SerializeField] private Camera playerCamera;
@@ -57,8 +67,10 @@ public class PauseMenuManager : MonoBehaviour
         if (playerCamera == null)
             playerCamera = Camera.main;
 
-        // Hide pause menu at start
+        // Hide panels at start
         pauseMenuPanel.SetActive(false);
+        if (audiobookPlayerPanel != null)
+            audiobookPlayerPanel.SetActive(false);
 
         if (screenFadeOverlay != null)
         {
@@ -80,10 +92,14 @@ public class PauseMenuManager : MonoBehaviour
         {
             PositionInFrontOfUser();
             pauseMenuPanel.SetActive(true);
+            if (audiobookPlayerPanel != null)
+                audiobookPlayerPanel.SetActive(true);
         }
         else
         {
             pauseMenuPanel.SetActive(false);
+            if (audiobookPlayerPanel != null)
+                audiobookPlayerPanel.SetActive(false);
         }
 
         // TODO: Optionally pause/reduce audio when paused
@@ -107,6 +123,23 @@ public class PauseMenuManager : MonoBehaviour
 
         // Rotate the panel to face the user
         pauseMenuPanel.transform.rotation = Quaternion.LookRotation(forward);
+
+        // Position the audiobook panel to the left or right of the main menu
+        if (audiobookPlayerPanel != null)
+        {
+            Vector3 right = playerCamera.transform.right;
+            right.y = 0f;
+            right.Normalize();
+
+            float side = audiobookPanelOnRight ? 1f : -1f;
+            Vector3 panelPosition = spawnPosition + right * (audiobookPanelOffset * side);
+            audiobookPlayerPanel.transform.position = panelPosition;
+
+            // Face the panel directly at the player
+            Vector3 dirToPlayer = playerCamera.transform.position - panelPosition;
+            dirToPlayer.y = 0f;
+            audiobookPlayerPanel.transform.rotation = Quaternion.LookRotation(-dirToPlayer.normalized);
+        }
     }
 
     /// <summary>
@@ -130,8 +163,10 @@ public class PauseMenuManager : MonoBehaviour
 
     private IEnumerator ReturnToLobbyTransition()
     {
-        // Disable menu so the user can't double-tap
+        // Disable menus so the user can't double-tap
         pauseMenuPanel.SetActive(false);
+        if (audiobookPlayerPanel != null)
+            audiobookPlayerPanel.SetActive(false);
 
         // Fade to black
         if (screenFadeOverlay != null)
