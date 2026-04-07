@@ -13,30 +13,37 @@ public static class NarrativeChapters
     public static readonly string[] Shire = new[]
     {
         "The Shire\n\"A Long-expected Party\"\nThe Fellowship of the Ring — Chapter I\n\n" +
-        "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole " +
-        "filled with the smell of worms, nor yet a bare, sandy hole — it was a " +
-        "hobbit-hole, and that means comfort.",
+        "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating " +
+        "his eleventy-first birthday with a party of special magnificence, there was much " +
+        "talk and excitement in Hobbiton.",
 
-        "The hobbit was Bilbo Baggins of Bag End, and on this particular morning — " +
-        "the morning of his one hundred and eleventh birthday — the whole of the " +
-        "Shire was in a flurry of excitement.",
+        "Bilbo was very rich and very peculiar, and had been the wonder of the Shire for " +
+        "sixty years, ever since his remarkable disappearance and unexpected return.",
 
-        "Preparations had been underway for weeks. A great party was to be held that " +
-        "evening, with fireworks by Gandalf the Grey — a name that sent a thrill " +
-        "through the younger hobbits who still remembered his rockets and cascading " +
-        "stars of old.",
+        "The riches he had brought back from his travels had now become a local legend, " +
+        "and it was popularly believed, whatever the old folk might say, that the Hill at " +
+        "Bag End was full of tunnels stuffed with treasure. And if that was not enough " +
+        "for fame, there was also his prolonged vigour to marvel at.",
 
-        "Bilbo had invited practically the entire Shire, and the field beside Bag End " +
-        "was filled with marquees and tables laden with more food than any one hobbit " +
-        "could sensibly account for.",
+        "Time wore on, but it seemed to have little effect on Mr. Baggins. At ninety he " +
+        "was much the same as at fifty. At ninety-nine they began to call him " +
+        "well-preserved; but unchanged would have been nearer the mark.",
 
-        "After supper, Bilbo rose to speak. He thanked his guests, made a few " +
-        "well-placed jokes, and then — with a wink and a smile — vanished.",
+        "There were some that shook their heads and thought this was too much of a good " +
+        "thing; it seemed unfair that anyone should possess (apparently) perpetual youth " +
+        "as well as (reputedly) inexhaustible wealth.",
 
-        "He slipped on his golden ring and walked unseen through the applauding crowd, " +
-        "leaving Bag End behind for the last time.\n\n" +
-        "The ring passed to Frodo. And with it, without anyone knowing it yet, " +
-        "passed the fate of all Middle-earth."
+        "'It will have to be paid for,' they said. 'It isn't natural, and trouble will come of it!'",
+
+        "But so far trouble had not come; and as Mr. Baggins was generous with his money, " +
+        "most people were willing to forgive him his oddities and his good fortune.",
+
+        "He remained on visiting terms with his relatives (except, of course, the " +
+        "Sackville-Bagginses), and he had many devoted admirers among the hobbits of " +
+        "poor and unimportant families.",
+
+        "But he had no close friends, until some of his younger cousins began to grow up.\n\n" +
+        "The eldest of these, and Bilbo's favourite, was young Frodo Baggins."
     };
 
     // ─────────────────────────────────────────────────────────────────────
