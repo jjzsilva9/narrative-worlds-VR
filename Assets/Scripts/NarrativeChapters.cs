@@ -13,26 +13,30 @@ public static class NarrativeChapters
     public static readonly string[] Shire = new[]
     {
         "The Shire\n\"A Long-expected Party\"\nThe Fellowship of the Ring — Chapter I\n\n" +
-        "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole filled " +
-        "with the smell of worms, nor yet a bare, sandy hole — it was a hobbit-hole, and " +
-        "that means comfort.\n\n" +
-        "The hobbit was Bilbo Baggins of Bag End, and on this particular morning — the " +
-        "morning of his one hundred and eleventh birthday — the whole of the Shire was " +
-        "in a flurry of excitement.",
+        "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole " +
+        "filled with the smell of worms, nor yet a bare, sandy hole — it was a " +
+        "hobbit-hole, and that means comfort.",
 
-        "Preparations had been underway for weeks. A great party was to be held on the " +
-        "evening, with fireworks by Gandalf the Grey — a name that sent a thrill through " +
-        "the younger hobbits who still remembered the rockets and cascading stars of old.\n\n" +
-        "Bilbo had invited practically the entire Shire, and the field beside Bag End was " +
-        "filled with marquees and tables laden with more food than any one hobbit could " +
-        "sensibly account for.",
+        "The hobbit was Bilbo Baggins of Bag End, and on this particular morning — " +
+        "the morning of his one hundred and eleventh birthday — the whole of the " +
+        "Shire was in a flurry of excitement.",
 
-        "After supper, Bilbo rose to speak. He thanked his guests, made a few well-placed " +
-        "jokes, and then — with a wink and a smile — vanished.\n\n" +
+        "Preparations had been underway for weeks. A great party was to be held that " +
+        "evening, with fireworks by Gandalf the Grey — a name that sent a thrill " +
+        "through the younger hobbits who still remembered his rockets and cascading " +
+        "stars of old.",
+
+        "Bilbo had invited practically the entire Shire, and the field beside Bag End " +
+        "was filled with marquees and tables laden with more food than any one hobbit " +
+        "could sensibly account for.",
+
+        "After supper, Bilbo rose to speak. He thanked his guests, made a few " +
+        "well-placed jokes, and then — with a wink and a smile — vanished.",
+
         "He slipped on his golden ring and walked unseen through the applauding crowd, " +
         "leaving Bag End behind for the last time.\n\n" +
-        "The ring passed to Frodo. And with it, without anyone knowing it yet, passed " +
-        "the fate of all Middle-earth."
+        "The ring passed to Frodo. And with it, without anyone knowing it yet, " +
+        "passed the fate of all Middle-earth."
     };
 
     // ─────────────────────────────────────────────────────────────────────
@@ -42,26 +46,31 @@ public static class NarrativeChapters
     public static readonly string[] GollumCave = new[]
     {
         "Gollum's Cave\n\"Riddles in the Dark\"\nThe Hobbit — Chapter V\n\n" +
-        "Bilbo Baggins had lost his companions. He lay in the dark — cold stone beneath " +
-        "him, cold black above — with no idea which way was out.\n\n" +
-        "When he reached out his hand, his fingers closed on something small and round " +
-        "and metal, half-buried in the cave floor.\n\n" +
-        "He pocketed it without a second thought. He would think of it again, many times, " +
-        "for the rest of his long life.",
+        "Bilbo Baggins had lost his companions. He lay in the dark — cold stone " +
+        "beneath him, cold black above — with no idea which way was out.",
 
-        "There came a sound from the underground lake — a faint, wet paddling. Then: two " +
-        "pale, round eyes gleaming in the dark.\n\n" +
-        "Gollum had lived beneath the Misty Mountains longer than he could remember, " +
-        "catching blind fish and creeping through tunnels, always talking to his Precious.\n\n" +
-        "He was very interested in Bilbo. Not in a friendly way.",
+        "When he reached out his hand, his fingers closed on something small and " +
+        "round and metal, half-buried in the cave floor.",
 
-        "They played a game of riddles, as was the custom, with Bilbo's life as the stakes. " +
-        "Back and forth the riddles went — from simple things of teeth and wind to darker, " +
-        "deeper puzzles that neither fully understood.\n\n" +
+        "He pocketed it without a second thought. He would think of it again, " +
+        "many times, for the rest of his long life.",
+
+        "There came a sound from the underground lake — a faint, wet paddling. " +
+        "Then: two pale, round eyes gleaming in the dark.",
+
+        "Gollum had lived beneath the Misty Mountains longer than he could " +
+        "remember, catching blind fish and creeping through tunnels, always " +
+        "talking to his Precious. He was very interested in Bilbo. Not in a " +
+        "friendly way.",
+
+        "They played a game of riddles, as was the custom, with Bilbo's life " +
+        "as the stakes. Back and forth the riddles went — from simple things " +
+        "of teeth and wind to darker, deeper puzzles that neither fully understood.",
+
         "In the end, flustered and desperate, Bilbo asked:\n\n" +
         "\"What have I got in my pocket?\"\n\n" +
-        "It was not a proper riddle. But it saved his life — and set in motion everything " +
-        "that was to come."
+        "It was not a proper riddle. But it saved his life — and set in motion " +
+        "everything that was to come."
     };
 
     // ─────────────────────────────────────────────────────────────────────
@@ -71,25 +80,30 @@ public static class NarrativeChapters
     public static readonly string[] Mordor = new[]
     {
         "Mordor\n\"The Land of Shadow\"\nThe Return of the King — Chapter II\n\n" +
-        "Frodo and Sam stood at the edge of the world they knew. Below them lay the " +
-        "Plateau of Gorgoroth: a dead and ashen land, pocked with craters, spiked with " +
-        "black rock, choking under the fumes of Orodruin.\n\n" +
-        "There was no colour here. Everything was grey, or black, or the sickly orange " +
-        "of distant fire. Nothing grew. Nothing moved but dust and ash.",
+        "Frodo and Sam stood at the edge of the world they knew. Below them lay " +
+        "the Plateau of Gorgoroth: a dead and ashen land, pocked with craters, " +
+        "spiked with black rock, choking under the fumes of Orodruin.",
 
-        "The Ring was heavier with every step.\n\n" +
-        "Frodo could feel it pulling at him — not just at his neck, but at his will, at " +
-        "the edges of who he was. The Eye was always searching. Sometimes it felt as " +
-        "though it had nearly found him.\n\n" +
-        "Sam walked at his master's side, watching him carefully, carrying what he could " +
-        "carry: food, rope, water, and whatever hope he had left.",
+        "There was no colour here. Everything was grey, or black, or the sickly " +
+        "orange of distant fire. Nothing grew. Nothing moved but dust and ash.",
 
-        "The mountain was always ahead of them.\n\n" +
-        "Mount Doom smoked and rumbled in the distance, casting its red light over the " +
-        "waste. They did not speak of what would happen when they reached it. They only " +
-        "walked.\n\n" +
+        "The Ring was heavier with every step. Frodo could feel it pulling at " +
+        "him — not just at his neck, but at his will, at the edges of who he was.",
+
+        "The Eye was always searching. Sometimes it felt as though it had " +
+        "nearly found him.",
+
+        "Sam walked at his master's side, watching him carefully, carrying what " +
+        "he could carry: food, rope, water, and whatever hope he had left.",
+
+        "The mountain was always ahead of them. Mount Doom smoked and rumbled " +
+        "in the distance, casting its red light over the waste.",
+
+        "They did not speak of what would happen when they reached it. " +
+        "They only walked.\n\n" +
         "One step, then another. That was enough.\n\n" +
-        "The fate of the world had come to this: two hobbits, alone, at the edge of the fire."
+        "The fate of the world had come to this: two hobbits, alone, " +
+        "at the edge of the fire."
     };
 
     // ─────────────────────────────────────────────────────────────────────
