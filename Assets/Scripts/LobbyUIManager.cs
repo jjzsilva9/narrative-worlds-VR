@@ -182,15 +182,16 @@ public class LobbyUIManager : MonoBehaviour
 
     private void SpawnBook()
     {
-        if (bookPrefab != null && bookSpawnPoint != null)
+        if (bookPrefab == null || bookSpawnPoint == null)
         {
-            Instantiate(bookPrefab, bookSpawnPoint.position, bookSpawnPoint.rotation);
-        }
-        else
-        {
-            // TODO: Wire up book prefab and spawn point in Inspector
             Debug.LogWarning("LobbyUIManager: Book prefab or spawn point not assigned.");
+            return;
         }
+
+        GameObject book = Instantiate(bookPrefab, bookSpawnPoint.position, bookSpawnPoint.rotation);
+
+        if (book.TryGetComponent(out VRBookController bookController))
+            bookController.SetPages(NarrativeChapters.Shire);
     }
 
     private void EnableShireParticles()
