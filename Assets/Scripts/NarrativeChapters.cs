@@ -1,4 +1,19 @@
+using NUnit.Framework;
 using System.Collections.Generic;
+using System.Xml;
+using Unity.Burst.CompilerServices;
+using Unity.Mathematics;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
+using UnityEngine.LightTransport;
+using UnityEngine.Rendering;
+using UnityEngine.UIElements.Experimental;
+using UnityEngine.XR;
+using UnityEngine.XR.ARSubsystems;
+using static Unity.Burst.Intrinsics.X86;
+using static UnityEngine.InputManagerEntry;
 
 /// <summary>
 /// Central store of chapter text for each environment scene.
@@ -13,30 +28,37 @@ public static class NarrativeChapters
     public static readonly string[] Shire = new[]
     {
         "The Shire\n\"A Long-expected Party\"\nThe Fellowship of the Ring — Chapter I\n\n" +
-        "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole " +
-        "filled with the smell of worms, nor yet a bare, sandy hole — it was a " +
-        "hobbit-hole, and that means comfort.",
+        "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating " +
+        "his eleventy-first birthday with a party of special magnificence, there was much " +
+        "talk and excitement in Hobbiton.",
 
-        "The hobbit was Bilbo Baggins of Bag End, and on this particular morning — " +
-        "the morning of his one hundred and eleventh birthday — the whole of the " +
-        "Shire was in a flurry of excitement.",
+        "Bilbo was very rich and very peculiar, and had been the wonder of the Shire for " +
+        "sixty years, ever since his remarkable disappearance and unexpected return.",
 
-        "Preparations had been underway for weeks. A great party was to be held that " +
-        "evening, with fireworks by Gandalf the Grey — a name that sent a thrill " +
-        "through the younger hobbits who still remembered his rockets and cascading " +
-        "stars of old.",
+        "The riches he had brought back from his travels had now become a local legend, " +
+        "and it was popularly believed, whatever the old folk might say, that the Hill at " +
+        "Bag End was full of tunnels stuffed with treasure. And if that was not enough " +
+        "for fame, there was also his prolonged vigour to marvel at.",
 
-        "Bilbo had invited practically the entire Shire, and the field beside Bag End " +
-        "was filled with marquees and tables laden with more food than any one hobbit " +
-        "could sensibly account for.",
+        "Time wore on, but it seemed to have little effect on Mr. Baggins. At ninety he " +
+        "was much the same as at fifty. At ninety-nine they began to call him " +
+        "well-preserved; but unchanged would have been nearer the mark.",
 
-        "After supper, Bilbo rose to speak. He thanked his guests, made a few " +
-        "well-placed jokes, and then — with a wink and a smile — vanished.",
+        "There were some that shook their heads and thought this was too much of a good " +
+        "thing; it seemed unfair that anyone should possess (apparently) perpetual youth " +
+        "as well as (reputedly) inexhaustible wealth.",
 
-        "He slipped on his golden ring and walked unseen through the applauding crowd, " +
-        "leaving Bag End behind for the last time.\n\n" +
-        "The ring passed to Frodo. And with it, without anyone knowing it yet, " +
-        "passed the fate of all Middle-earth."
+        "'It will have to be paid for,' they said. 'It isn't natural, and trouble will come of it!'",
+
+        "But so far trouble had not come; and as Mr. Baggins was generous with his money, " +
+        "most people were willing to forgive him his oddities and his good fortune.",
+
+        "He remained on visiting terms with his relatives (except, of course, the " +
+        "Sackville-Bagginses), and he had many devoted admirers among the hobbits of " +
+        "poor and unimportant families.",
+
+        "But he had no close friends, until some of his younger cousins began to grow up.\n\n" +
+        "The eldest of these, and Bilbo's favourite, was young Frodo Baggins."
     };
 
     // ─────────────────────────────────────────────────────────────────────
@@ -45,32 +67,113 @@ public static class NarrativeChapters
     // ─────────────────────────────────────────────────────────────────────
     public static readonly string[] GollumCave = new[]
     {
+        // Page 1 (reference size)
         "Gollum's Cave\n\"Riddles in the Dark\"\nThe Hobbit — Chapter V\n\n" +
-        "Bilbo Baggins had lost his companions. He lay in the dark — cold stone " +
-        "beneath him, cold black above — with no idea which way was out.",
+        "What has roots as nobody sees,\n" +
+        "Is taller than trees,\n" +
+        "Up, up it goes,\n" +
+        "And yet never grows?\n\n" +
+        "\"Easy!\" said Bilbo. \"Mountain, I suppose.\"\n\n",
 
-        "When he reached out his hand, his fingers closed on something small and " +
-        "round and metal, half-buried in the cave floor.",
+        // Page 2
+        "\"Does it guess easy? It must have a competition with us, my\n" +
+        "preciouss! If precious asks, and it doesn't answer, we eats it, my preciousss.\"\n\n",
 
-        "He pocketed it without a second thought. He would think of it again, " +
-        "many times, for the rest of his long life.",
+        // Page 3
+        "If it asks us, and we doesn't answer, then we does what it wants, eh? We\n" +
+        "shows it the way out, yes!\"\n\n",
 
-        "There came a sound from the underground lake — a faint, wet paddling. " +
-        "Then: two pale, round eyes gleaming in the dark.",
+        // Page 4
+        "All right! said Bilbo, not daring to disagree, and nearly bursting his\n" +
+        "brain to think of riddles that could save him from being eaten.\n\n",
 
-        "Gollum had lived beneath the Misty Mountains longer than he could " +
-        "remember, catching blind fish and creeping through tunnels, always " +
-        "talking to his Precious. He was very interested in Bilbo. Not in a " +
-        "friendly way.",
+        // Page 5
+        "Thirty white horses on a red hill,\n" +
+        "First they champ,\n" +
+        "Then they stamp,\n" +
+        "Then they stand still.\n\n",
 
-        "They played a game of riddles, as was the custom, with Bilbo's life " +
-        "as the stakes. Back and forth the riddles went — from simple things " +
-        "of teeth and wind to darker, deeper puzzles that neither fully understood.",
+        // Page 6
+        "That was all he could think of to ask — the idea of eating was rather on\n" +
+        "his mind.\n\n",
 
-        "In the end, flustered and desperate, Bilbo asked:\n\n" +
-        "\"What have I got in my pocket?\"\n\n" +
-        "It was not a proper riddle. But it saved his life — and set in motion " +
-        "everything that was to come."
+        // Page 7
+        "It was rather an old one, too, and Gollum knew the answer as well\n" +
+        "as you do.\n\n",
+
+        // Page 8
+        "\"Chestnuts, chestnuts,\" he hissed. \"Teeth! teeth! my preciousss; but we\n" +
+        "has only six!\"\n\n",
+
+        // Page 9
+        "Voiceless it cries,\n" +
+        "Wingless flutters,\n" +
+        "Toothless bites,\n" +
+        "Mouthless mutters.\n\n",
+
+        // Page 10
+        "\"Half a moment!\" cried Bilbo, who was still thinking uncomfortably\n" +
+        "about eating.\n\n",
+
+        // Page 11
+        "Fortunately he had once heard something rather like this before, and\n" +
+        "getting his wits back he thought of the answer.\n\n",
+
+        // Page 12
+        "\"Wind, of course,\" he said, and he was so pleased that he made up one\n" +
+        "on the spot.\n\n",
+
+        // Page 13
+        "An eye in a blue face\n" +
+        "Saw an eye in a green face.\n\n",
+
+        // Page 14
+        "\"That eye is like to this eye\"\n" +
+        "Said the first eye,\n" +
+        "\"But in low place,\n" +
+        "Not in high place\".\n\n",
+
+        // Page 15
+        "\"Ss, ss, ss,\" said Gollum.\n\n",
+
+        // Page 16
+        "He had been underground a long long time, and was forgetting this sort\n" +
+        "of thing.\n\n",
+
+        // Page 17
+        "But just as Bilbo was beginning to hope that the wretch would not be\n" +
+        "able to answer, Gollum brought up memories of ages and ages and ages before,\n\n",
+
+        // Page 18
+        "when he lived with his grandmother in a hole in a bank by a river, \"Sss,\n" +
+        "sss, my preciouss,\" he said.\n\n",
+
+        // Page 19
+        "\"Sun on the daisies it means, it does.\"\n\n",
+
+        // Page 20
+        "But these ordinary aboveground everyday sort of riddles were tiring for\n" +
+        "him.\n\n",
+
+        // Page 21
+        "Also they reminded him of days when he had been less lonely and\n" +
+        "sneaky and nasty, and that put him out of temper.\n\n",
+
+        // Page 22
+        "What is more they made him hungry; so this time he tried something a bit\n" +
+        "more difficult and more unpleasant:\n\n",
+
+        // Page 23
+        "It cannot be seen, cannot be felt,\n" +
+        "Cannot be heard, cannot be smelt.\n\n",
+
+        // Page 24
+        "It lies behind stars and under hills,\n" +
+        "And empty holes it fills.\n\n",
+
+        // Page 25
+        "It comes first and follows after,\n" +
+        "Ends life, kills laughter."
     };
 
     // ─────────────────────────────────────────────────────────────────────
@@ -228,7 +331,7 @@ public static class NarrativeChapters
     private static readonly Dictionary<string, string[]> ByScene = new Dictionary<string, string[]>
     {
         { "Shire",      Shire },
-        { "GollumCave", GollumCave },
+        { "gollumscenetest", GollumCave },
         { "Mordor",     Mordor },
     };
 
