@@ -1,0 +1,4 @@
+Riddles In The Dark,0
+Bilbo's First Riddle,62
+Gollum's Second Riddle,96
+Biblo's Second Riddle,139
