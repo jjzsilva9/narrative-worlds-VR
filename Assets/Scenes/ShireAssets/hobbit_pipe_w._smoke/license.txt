@@ -1,0 +1,11 @@
+Model Information:
+* title:	Hobbit Pipe W. Smoke
+* source:	https://sketchfab.com/3d-models/hobbit-pipe-w-smoke-5a2875579a814372b373d33bac8485fb
+* author:	TechnoCraft (https://sketchfab.com/TechnoCraft)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Hobbit Pipe W. Smoke" (https://sketchfab.com/3d-models/hobbit-pipe-w-smoke-5a2875579a814372b373d33bac8485fb) by TechnoCraft (https://sketchfab.com/TechnoCraft) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
