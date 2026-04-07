@@ -21,6 +21,13 @@ public class PipeProximity : MonoBehaviour
     [Tooltip("Name of the animation state to play")]
     [SerializeField] private string animationStateName = "Smoke";
 
+    [Header("Audio")]
+    [Tooltip("AudioSource on the pipe used to play the smoking sound")]
+    [SerializeField] private AudioSource audioSource;
+
+    [Tooltip("The audio clip to play when smoking begins")]
+    [SerializeField] private AudioClip smokingClip;
+
     private bool isPlaying = false;
 
     private void Start()
@@ -45,11 +52,19 @@ public class PipeProximity : MonoBehaviour
         {
             pipeAnimator.enabled = true;
             pipeAnimator.Play(animationStateName);
+
+            if (audioSource != null && smokingClip != null)
+                audioSource.PlayOneShot(smokingClip);
+
             isPlaying = true;
         }
         else if (!inRange && isPlaying)
         {
             pipeAnimator.enabled = false;
+
+            if (audioSource != null)
+                audioSource.Stop();
+
             isPlaying = false;
         }
     }
