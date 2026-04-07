@@ -8954,7 +8954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2243020122246761220, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 61.4
       objectReference: {fileID: 0}
     - target: {fileID: 2243020122246761220, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -8974,7 +8974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2243020122508800755, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 35.73
       objectReference: {fileID: 0}
     - target: {fileID: 2243020122508800755, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -9002,7 +9002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2243020122894124685, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 39.07
       objectReference: {fileID: 0}
     - target: {fileID: 2243020122894124685, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -9030,7 +9030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4750419573833148750, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 32.34
       objectReference: {fileID: 0}
     - target: {fileID: 4750419573833148750, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -9066,7 +9066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4750419574852684551, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 34.8
       objectReference: {fileID: 0}
     - target: {fileID: 4750419574852684551, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -9094,7 +9094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4750419575382347206, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 61.4
       objectReference: {fileID: 0}
     - target: {fileID: 4750419575382347206, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -9122,7 +9122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4750419575962273167, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 35.73
       objectReference: {fileID: 0}
     - target: {fileID: 4750419575962273167, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -11926,6 +11926,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912946111}
   m_CullTransparentMesh: 1
+--- !u!4 &1931303157 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3027929582310470049, guid: 58801d353e70cba42b68d0c4c9ad6e31, type: 3}
+  m_PrefabInstance: {fileID: 268371250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1941775764
 GameObject:
   m_ObjectHideFlags: 0
@@ -13795,13 +13800,61 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: maxPitch
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
       propertyPath: maxVolume
-      value: 0.541
+      value: 0.864
       objectReference: {fileID: 0}
     - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
       propertyPath: minVolume
-      value: 0.289
+      value: 0.474
       objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: maxDistance
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: minDistance
+      value: 2.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: minInterval
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: spawnCenter
+      value: 
+      objectReference: {fileID: 1931303157}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: spawnRadius
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: spatialBlend
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: activeDuration
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: minHeightOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: 'audioClips.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a2e94c17e3d47b4a93b0d35bbda01fc, type: 3}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: 'audioClips.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 9add21a7c452c4043997e96ed4b14cf7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
