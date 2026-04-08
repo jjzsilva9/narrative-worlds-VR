@@ -103,14 +103,40 @@ public class AudiobookPlayer : MonoBehaviour
     private void Awake()
     {
         _src = GetComponent<AudioSource>();
-        _src.spatialBlend = 0f;   // Non-spatialized — plays directly to listener
+        _src.spatialBlend = 0f;
         _src.loop         = false;
         _src.playOnAwake  = false;
+        DiscoverFiles();
     }
 
-    private void Start()
+    // ─── Convenience ─────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Finds the file matching fileNameWithoutExtension (case-insensitive),
+    /// loads it, and starts playback automatically.
+    /// </summary>
+    public void LoadAndPlay(string fileNameWithoutExtension)
     {
-        DiscoverFiles();
+        string match = _availableFiles.Find(f =>
+            string.Equals(Path.GetFileNameWithoutExtension(f), fileNameWithoutExtension,
+                          StringComparison.OrdinalIgnoreCase));
+
+        if (match == null)
+        {
+            Debug.LogWarning($"[AudiobookPlayer] File not found: '{fileNameWithoutExtension}'");
+            return;
+        }
+
+        StartCoroutine(LoadThenPlay(match));
+    }
+
+    private IEnumerator LoadThenPlay(string fullPath)
+    {
+        LoadFile(fullPath);
+        while (CurrentState == PlaybackState.Loading)
+            yield return null;
+        if (CurrentState == PlaybackState.Stopped)
+            Play();
     }
 
     // ─── File Discovery ───────────────────────────────────────────────────────

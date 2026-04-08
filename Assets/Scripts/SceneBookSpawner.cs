@@ -14,10 +14,13 @@ public class SceneBookSpawner : MonoBehaviour
 
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name == "Shire")
+            return;
+
         SpawnBook();
     }
 
-    private void SpawnBook()
+    public void SpawnBook()
     {
         if (bookPrefab == null)
         {
@@ -38,5 +41,13 @@ public class SceneBookSpawner : MonoBehaviour
 
         if (book.TryGetComponent(out VRBookController bookController))
             bookController.SetPages(pages);
+
+        // Wire up grab → audiobook trigger
+        var audioSetup = FindObjectOfType<SceneAudioSetup>();
+        if (audioSetup != null)
+        {
+            var grabHandler = book.AddComponent<BookGrabHandler>();
+            grabHandler.Init(audioSetup);
+        }
     }
 }

@@ -23,15 +23,12 @@ public class LobbyUIManager : MonoBehaviour
     [SerializeField] private float screenFadeDuration = 0.5f;
 
     [Header("Book")]
-    [Tooltip("The book prefab to spawn when entering an environment")]
-    [SerializeField] private GameObject bookPrefab;
-
-    [Tooltip("Where the book should spawn (e.g. an empty GameObject positioned in front of the user)")]
-    [SerializeField] private Transform bookSpawnPoint;
+    [Tooltip("The SceneBookSpawner in the scene that handles spawning the book")]
+    [SerializeField] private SceneBookSpawner sceneBookSpawner;
 
     [Header("Scene Names")]
     [Tooltip("Scene names for each environment - must match Build Settings")]
-    [SerializeField] private string gollumsCaveSceneName = "GollumCave";
+    [SerializeField] private string gollumsCaveSceneName = "gollumscenetest";
     [SerializeField] private string mordorSceneName = "Mordor";
 
     [Header("Audio")]
@@ -149,7 +146,8 @@ public class LobbyUIManager : MonoBehaviour
         environmentPanel.SetActive(false);
 
         // Spawn the book
-        SpawnBook();
+        if (sceneBookSpawner != null)
+            sceneBookSpawner.SpawnBook();
 
         // Enable particle systems
         EnableShireParticles();
@@ -179,20 +177,6 @@ public class LobbyUIManager : MonoBehaviour
     // ─────────────────────────────────────────────
     // HELPER METHODS
     // ─────────────────────────────────────────────
-
-    private void SpawnBook()
-    {
-        if (bookPrefab == null || bookSpawnPoint == null)
-        {
-            Debug.LogWarning("LobbyUIManager: Book prefab or spawn point not assigned.");
-            return;
-        }
-
-        GameObject book = Instantiate(bookPrefab, bookSpawnPoint.position, bookSpawnPoint.rotation);
-
-        if (book.TryGetComponent(out VRBookController bookController))
-            bookController.SetPages(NarrativeChapters.Shire);
-    }
 
     private void EnableShireParticles()
     {

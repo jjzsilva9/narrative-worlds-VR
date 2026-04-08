@@ -1,19 +1,4 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Xml;
-using Unity.Burst.CompilerServices;
-using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.LightTransport;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements.Experimental;
-using UnityEngine.XR;
-using UnityEngine.XR.ARSubsystems;
-using static Unity.Burst.Intrinsics.X86;
-using static UnityEngine.InputManagerEntry;
 
 /// <summary>
 /// Central store of chapter text for each environment scene.

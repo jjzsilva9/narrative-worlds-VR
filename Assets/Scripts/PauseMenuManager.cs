@@ -39,10 +39,13 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private CanvasGroup screenFadeOverlay;
     [SerializeField] private float fadeDuration = 0.5f;
 
-    [Header("Scene")]
-    [SerializeField] private string lobbySceneName = "LobbyScene"; // TODO: Replace with actual lobby scene name
+    [Header("Scene Names")]
+    [SerializeField] private string shireSceneName = "Shire";
+    [SerializeField] private string gollumSceneName = "gollumscenetest";
+    [SerializeField] private string mordorSceneName = "Mordor";
 
     private bool isPaused = false;
+    private CanvasGroup _audiobookCanvasGroup;
 
     private void OnEnable()
     {
@@ -70,7 +73,13 @@ public class PauseMenuManager : MonoBehaviour
         // Hide panels at start
         pauseMenuPanel.SetActive(false);
         if (audiobookPlayerPanel != null)
-            audiobookPlayerPanel.SetActive(false);
+        {
+            audiobookPlayerPanel.SetActive(true); // keep active so audio runs
+            _audiobookCanvasGroup = audiobookPlayerPanel.GetComponent<CanvasGroup>();
+            if (_audiobookCanvasGroup == null)
+                _audiobookCanvasGroup = audiobookPlayerPanel.AddComponent<CanvasGroup>();
+            SetAudiobookPanelVisible(false);
+        }
 
         if (screenFadeOverlay != null)
         {
@@ -93,13 +102,13 @@ public class PauseMenuManager : MonoBehaviour
             PositionInFrontOfUser();
             pauseMenuPanel.SetActive(true);
             if (audiobookPlayerPanel != null)
-                audiobookPlayerPanel.SetActive(true);
+                SetAudiobookPanelVisible(true);
         }
         else
         {
             pauseMenuPanel.SetActive(false);
             if (audiobookPlayerPanel != null)
-                audiobookPlayerPanel.SetActive(false);
+                SetAudiobookPanelVisible(false);
         }
 
         // TODO: Optionally pause/reduce audio when paused
@@ -142,13 +151,10 @@ public class PauseMenuManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called by the "Return to Lobby" button's OnClick().
-    /// </summary>
-    public void OnReturnToLobby()
-    {
-        StartCoroutine(ReturnToLobbyTransition());
-    }
+    public void LoadShire()      => StartCoroutine(LoadSceneTransition(shireSceneName));
+    public void LoadGollumCave() => StartCoroutine(LoadSceneTransition(gollumSceneName));
+    public void LoadMordor()     => StartCoroutine(LoadSceneTransition(mordorSceneName));
+    public void OnQuitPressed()  => Application.Quit();
 
     /// <summary>
     /// Called by the volume slider's OnValueChanged().
@@ -161,14 +167,20 @@ public class PauseMenuManager : MonoBehaviour
         AudioListener.volume = value;
     }
 
-    private IEnumerator ReturnToLobbyTransition()
+    private void SetAudiobookPanelVisible(bool visible)
     {
-        // Disable menus so the user can't double-tap
+        if (_audiobookCanvasGroup == null) return;
+        _audiobookCanvasGroup.alpha = visible ? 1f : 0f;
+        _audiobookCanvasGroup.interactable = visible;
+        _audiobookCanvasGroup.blocksRaycasts = visible;
+    }
+
+    private IEnumerator LoadSceneTransition(string sceneName)
+    {
         pauseMenuPanel.SetActive(false);
         if (audiobookPlayerPanel != null)
-            audiobookPlayerPanel.SetActive(false);
+            SetAudiobookPanelVisible(false);
 
-        // Fade to black
         if (screenFadeOverlay != null)
         {
             screenFadeOverlay.gameObject.SetActive(true);
@@ -182,8 +194,7 @@ public class PauseMenuManager : MonoBehaviour
             screenFadeOverlay.alpha = 1f;
         }
 
-        // Load lobby
-        SceneManager.LoadScene(lobbySceneName);
+        SceneManager.LoadScene(sceneName);
     }
 
 }
