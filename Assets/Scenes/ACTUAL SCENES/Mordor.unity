@@ -11108,7 +11108,7 @@ MonoBehaviour:
   audiobookPlayer: {fileID: 1931303159}
   sceneMusicFileName: mordor
   sceneAudiobookFileName: TwoTowers
-  duckedMusicVolume: 0.2
+  duckedMusicVolume: 0.1
   duckFadeDuration: 2
 --- !u!4 &1598170239
 Transform:

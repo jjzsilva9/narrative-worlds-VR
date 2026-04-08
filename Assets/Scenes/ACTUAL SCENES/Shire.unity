@@ -1802,12 +1802,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: maxPitch
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: maxDistance
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
       propertyPath: maxInterval
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
       propertyPath: minInterval
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: spawnCenter
+      value: 
+      objectReference: {fileID: 912246419}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: spawnRadius
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+      propertyPath: activeDuration
+      value: 227.4
       objectReference: {fileID: 0}
     - target: {fileID: 9217884532596917246, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
       propertyPath: audioClips.Array.size
@@ -1826,6 +1846,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+--- !u!4 &912246419 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7347169161119578719, guid: 76213069d9ad8e6439db186b65f498a1, type: 3}
+  m_PrefabInstance: {fileID: 912246418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &970750003 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -722073030716806200, guid: b73977bfa6d0f8a43a91ab2dc8746aa0, type: 3}
