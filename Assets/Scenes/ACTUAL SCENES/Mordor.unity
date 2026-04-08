@@ -1870,8 +1870,20 @@ PrefabInstance:
       value: AudiobookPlayerRoot
       objectReference: {fileID: 0}
     - target: {fileID: 3027929582310470049, guid: 58801d353e70cba42b68d0c4c9ad6e31, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.1859689
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027929582310470049, guid: 58801d353e70cba42b68d0c4c9ad6e31, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.1859689
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027929582310470049, guid: 58801d353e70cba42b68d0c4c9ad6e31, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.1859689
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027929582310470049, guid: 58801d353e70cba42b68d0c4c9ad6e31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.519
+      value: 4.5229
       objectReference: {fileID: 0}
     - target: {fileID: 3027929582310470049, guid: 58801d353e70cba42b68d0c4c9ad6e31, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5289,6 +5301,8 @@ MonoBehaviour:
   shireSceneName: Shire
   gollumSceneName: gollumscenetest
   mordorSceneName: Mordor
+  xrOrigin: {fileID: 1373153108}
+  teleportAnchor: {fileID: 756086973}
 --- !u!4 &750446224
 Transform:
   m_ObjectHideFlags: 0
@@ -9651,6 +9665,11 @@ PrefabInstance:
 --- !u!20 &1373153107 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7917674758326848207, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 1373153106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1373153108 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8806329115733545878, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
   m_PrefabInstance: {fileID: 1373153106}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1389167438

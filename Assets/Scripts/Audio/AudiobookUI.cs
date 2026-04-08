@@ -74,6 +74,11 @@ public class AudiobookUI : MonoBehaviour
     [Tooltip("Optional panel to show while a file is loading.")]
     [SerializeField] private GameObject loadingOverlay;
 
+    [Header("Audiobook Filter")]
+    [Tooltip("Only these file names (no extension) will appear in the list, with their display names")]
+    [SerializeField] private string[] audiobookFileNames = { "FellowshipOfTheRings", "TwoTowers", "TheHobbit" };
+    [SerializeField] private string[] audiobookDisplayNames = { "The Fellowship of the Ring", "The Two Towers", "The Hobbit" };
+
     [Header("Icons")]
     [SerializeField] private string iconPlay    = ">";
     [SerializeField] private string iconPause   = "||";  // ASCII pause
@@ -136,6 +141,9 @@ public class AudiobookUI : MonoBehaviour
         SetNowPlaying(null);
         SetPlayPauseIcon(false);
         ShowLoading(false);
+
+        // Re-trigger file discovery now that we're subscribed
+        _player.DiscoverFiles();
     }
 
     private void OnDestroy()
@@ -219,18 +227,25 @@ public class AudiobookUI : MonoBehaviour
 
         foreach (string path in files)
         {
-            string displayName = Path.GetFileNameWithoutExtension(path);
-            string capturedPath = path; // closure capture
+            string fileName = Path.GetFileNameWithoutExtension(path);
+            int idx = System.Array.FindIndex(audiobookFileNames,
+                f => string.Equals(f, fileName, System.StringComparison.OrdinalIgnoreCase));
+
+            if (idx < 0) continue; // skip non-audiobook files
+
+            string displayName = (audiobookDisplayNames != null && idx < audiobookDisplayNames.Length)
+                ? audiobookDisplayNames[idx]
+                : fileName;
+
+            string capturedPath = path;
 
             GameObject row = Instantiate(fileButtonPrefab, fileListContainer);
             _fileRows.Add(row);
             _fileRowMap[path] = row;
 
-            // Set label
             var label = row.GetComponentInChildren<TMP_Text>();
             if (label != null) label.text = displayName;
 
-            // Load on click
             var btn = row.GetComponent<Button>();
             btn?.onClick.AddListener(() => OnFileSelected(capturedPath));
         }
@@ -266,9 +281,16 @@ public class AudiobookUI : MonoBehaviour
         {
             var label = kvp.Value.GetComponentInChildren<TMP_Text>();
             if (label == null) continue;
-            string baseName = Path.GetFileNameWithoutExtension(kvp.Key);
-            bool   active   = kvp.Key == activePath;
-            label.text      = active ? $"{iconPlaying} {baseName}" : baseName;
+
+            string fileName = Path.GetFileNameWithoutExtension(kvp.Key);
+            int idx = System.Array.FindIndex(audiobookFileNames,
+                f => string.Equals(f, fileName, System.StringComparison.OrdinalIgnoreCase));
+            string displayName = (idx >= 0 && audiobookDisplayNames != null && idx < audiobookDisplayNames.Length)
+                ? audiobookDisplayNames[idx]
+                : fileName;
+
+            bool active = kvp.Key == activePath;
+            label.text  = active ? $"{iconPlaying} {displayName}" : displayName;
         }
     }
 

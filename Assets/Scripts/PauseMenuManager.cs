@@ -44,6 +44,12 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private string gollumSceneName = "gollumscenetest";
     [SerializeField] private string mordorSceneName = "Mordor";
 
+    [Header("Teleport")]
+    [Tooltip("The XR Origin root transform to move before scene transition")]
+    [SerializeField] private Transform xrOrigin;
+    [Tooltip("The teleport anchor/platform in this scene to move the player to before fading out")]
+    [SerializeField] private Transform teleportAnchor;
+
     private bool isPaused = false;
     private CanvasGroup _audiobookCanvasGroup;
 
@@ -85,6 +91,26 @@ public class PauseMenuManager : MonoBehaviour
         {
             screenFadeOverlay.alpha = 0f;
             screenFadeOverlay.gameObject.SetActive(false);
+        }
+
+        StartCoroutine(TeleportNextFrame());
+    }
+
+    private IEnumerator TeleportNextFrame()
+    {
+        if (xrOrigin == null || teleportAnchor == null) yield break;
+
+        // Keep retrying until the position sticks (XR simulator may override us)
+        int maxAttempts = 10;
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            yield return null;
+            xrOrigin.position = teleportAnchor.position;
+            xrOrigin.rotation = teleportAnchor.rotation;
+
+            yield return null;
+            if (Vector3.Distance(xrOrigin.position, teleportAnchor.position) < 0.05f)
+                break;
         }
     }
 
@@ -180,6 +206,13 @@ public class PauseMenuManager : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         if (audiobookPlayerPanel != null)
             SetAudiobookPanelVisible(false);
+
+        // Move player to teleport anchor before fading
+        if (xrOrigin != null && teleportAnchor != null)
+        {
+            xrOrigin.position = teleportAnchor.position;
+            xrOrigin.rotation = teleportAnchor.rotation;
+        }
 
         if (screenFadeOverlay != null)
         {
