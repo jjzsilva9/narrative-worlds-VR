@@ -1119,7 +1119,7 @@ MonoBehaviour:
   audiobookPanelOnRight: 1
   playerCamera: {fileID: 1373153107}
   spawnDistance: 1.5
-  menuButtonAction: {fileID: 4116954447336496447, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
+  menuButtonAction: {fileID: 8086092489985434388, guid: ee2a322bbc465164e8f1c35193f667fd, type: 3}
   screenFadeOverlay: {fileID: 1172501764}
   fadeDuration: 0.5
   shireSceneName: Shire
