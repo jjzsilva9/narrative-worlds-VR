@@ -16,12 +16,18 @@ public class SceneAudioSetup : MonoBehaviour
     [Tooltip("AudiobookPlayer used for the audiobook narration")]
     [SerializeField] private AudiobookPlayer audiobookPlayer;
 
-    [Header("Files")]
-    [Tooltip("File name (no extension) to play when the scene loads. e.g. ShireMusic")]
-    [SerializeField] private string sceneMusicFileName;
+    [Header("Audio Clips")]
+    [Tooltip("Music clip to play when the scene loads.")]
+    [SerializeField] private AudioClip sceneMusicClip;
 
-    [Tooltip("File name (no extension) to play when the book is picked up. e.g. FellowshipOfTheRings")]
-    [SerializeField] private string sceneAudiobookFileName;
+    [Tooltip("Chapters file for the music clip (optional).")]
+    [SerializeField] private TextAsset sceneMusicChapters;
+
+    [Tooltip("Audiobook clip to play when the book is picked up.")]
+    [SerializeField] private AudioClip sceneAudiobookClip;
+
+    [Tooltip("Chapters file for the audiobook clip (optional).")]
+    [SerializeField] private TextAsset sceneAudiobookChapters;
 
     [Header("Music Ducking")]
     [Tooltip("Volume to fade music down to when the audiobook starts (0-1)")]
@@ -34,8 +40,8 @@ public class SceneAudioSetup : MonoBehaviour
 
     private void Start()
     {
-        if (!string.IsNullOrEmpty(sceneMusicFileName))
-            musicPlayer?.LoadAndPlay(sceneMusicFileName);
+        if (sceneMusicClip != null)
+            musicPlayer?.LoadClip(sceneMusicClip, sceneMusicChapters);
     }
 
     /// <summary>Called by BookGrabHandler when the book is first grabbed.</summary>
@@ -47,8 +53,8 @@ public class SceneAudioSetup : MonoBehaviour
         if (musicPlayer != null)
             StartCoroutine(DuckMusic());
 
-        if (!string.IsNullOrEmpty(sceneAudiobookFileName))
-            audiobookPlayer?.LoadAndPlay(sceneAudiobookFileName);
+        if (sceneAudiobookClip != null)
+            audiobookPlayer?.LoadClip(sceneAudiobookClip, sceneAudiobookChapters);
     }
 
     private IEnumerator DuckMusic()

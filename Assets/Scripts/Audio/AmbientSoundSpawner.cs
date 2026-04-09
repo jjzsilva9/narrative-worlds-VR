@@ -114,6 +114,7 @@ public class AmbientSoundSpawner : MonoBehaviour
         if (audioClips.Length == 0) return;
 
         AudioClip clip = audioClips[Random.Range(0, audioClips.Length)];
+        if (clip == null) return;
 
         // Random position within a sphere, clamped to minimum height
         Vector3 centre = spawnCenter != null ? spawnCenter.position : transform.position;

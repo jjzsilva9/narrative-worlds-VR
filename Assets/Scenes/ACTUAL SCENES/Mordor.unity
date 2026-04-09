@@ -6232,6 +6232,74 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4676264749234668045, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676264749234668045, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676264749234668045, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676264749234668045, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899302771866819468, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899302771866819468, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899302771866819468, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514491870654633420, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514491870654633420, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514491870654633420, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514491870654633420, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500445093120998860, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500445093120998860, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500445093120998860, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500445093120998860, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620759977660333949, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620759977660333949, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6770232239516788763, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
       propertyPath: m_Name
       value: Pause Menu
@@ -6314,6 +6382,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6924902376231438784, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754842894944053070, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8644975985929075382, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8644975985929075382, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8644975985929075382, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8644975985929075382, guid: f0efa9b6fd7ba9a4997b1a12a3abe9c8, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11049,8 +11137,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneAudioSetup
   musicPlayer: {fileID: 481610102}
   audiobookPlayer: {fileID: 1931303159}
-  sceneMusicFileName: mordor
-  sceneAudiobookFileName: TwoTowers
+  sceneMusicClip: {fileID: 8300000, guid: 901d4fec994987645b6c429cc5c0c8e3, type: 3}
+  sceneMusicChapters: {fileID: 0}
+  sceneAudiobookClip: {fileID: 8300000, guid: 6d88c2fa2b32f15418da152c23e446a1, type: 3}
+  sceneAudiobookChapters: {fileID: 4900000, guid: 696a4ab3a85bcb84a896135d16a80bb7, type: 3}
   duckedMusicVolume: 0.1
   duckFadeDuration: 2
 --- !u!4 &1598170239
@@ -11902,7 +11992,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1

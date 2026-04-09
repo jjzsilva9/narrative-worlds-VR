@@ -112,6 +112,37 @@ public class AudiobookPlayer : MonoBehaviour
     // ─── Convenience ─────────────────────────────────────────────────────────
 
     /// <summary>
+    /// Assigns an AudioClip directly (no file loading) and begins playback.
+    /// Use this instead of LoadAndPlay when the clip is a serialized asset reference.
+    /// Pass a TextAsset for the matching .chapters.txt if you have one.
+    /// </summary>
+    public void LoadClip(AudioClip clip, TextAsset chaptersAsset = null)
+    {
+        if (clip == null)
+        {
+            Debug.LogWarning("[AudiobookPlayer] LoadClip called with null clip.");
+            return;
+        }
+
+        if (_progressRoutine != null) StopCoroutine(_progressRoutine);
+
+        CurrentFileName = clip.name;
+        _src.clip = clip;
+        _src.Stop();
+
+        SetState(PlaybackState.Stopped);
+        OnFileLoaded?.Invoke(CurrentFileName);
+
+        if (chaptersAsset != null)
+            LoadChaptersFromText(chaptersAsset.text);
+        else
+            OnChaptersLoaded?.Invoke(new List<BookmarkEntry>());
+
+        LoadUserBookmarksForFile(clip.name);
+        Play();
+    }
+
+    /// <summary>
     /// Finds the file matching fileNameWithoutExtension (case-insensitive),
     /// loads it, and starts playback automatically.
     /// </summary>
@@ -229,7 +260,13 @@ public class AudiobookPlayer : MonoBehaviour
             return;
         }
 
-        foreach (string line in File.ReadAllLines(chaptersPath))
+        LoadChaptersFromText(File.ReadAllText(chaptersPath));
+    }
+
+    private void LoadChaptersFromText(string text)
+    {
+        _chapters.Clear();
+        foreach (string line in text.Split('\n'))
         {
             if (string.IsNullOrWhiteSpace(line) || line.TrimStart().StartsWith("#")) continue;
             string[] parts = line.Split(',');
@@ -239,11 +276,34 @@ public class AudiobookPlayer : MonoBehaviour
                 _chapters.Add(new BookmarkEntry(parts[0].Trim(), ts, isUserBookmark: false));
             }
         }
-
         OnChaptersLoaded?.Invoke(new List<BookmarkEntry>(_chapters));
     }
 
     // ─── User Bookmarks ───────────────────────────────────────────────────────
+
+    // Used by LoadClip (serialized asset path). Bookmarks stored in persistentDataPath
+    // so this works on all platforms including Android.
+    private void LoadUserBookmarksForFile(string clipName)
+    {
+        _userBookmarks.Clear();
+        _bookmarksPath = Path.Combine(Application.persistentDataPath, clipName + ".bookmarks.txt");
+
+        if (File.Exists(_bookmarksPath))
+        {
+            foreach (string line in File.ReadAllLines(_bookmarksPath))
+            {
+                if (string.IsNullOrWhiteSpace(line) || line.TrimStart().StartsWith("#")) continue;
+                string[] parts = line.Split(',');
+                if (parts.Length >= 2 &&
+                    float.TryParse(parts[1].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out float ts))
+                {
+                    _userBookmarks.Add(new BookmarkEntry(parts[0].Trim(), ts, isUserBookmark: true));
+                }
+            }
+        }
+
+        OnBookmarksChanged?.Invoke(new List<BookmarkEntry>(_userBookmarks));
+    }
 
     private void LoadUserBookmarks(string audioFilePath)
     {

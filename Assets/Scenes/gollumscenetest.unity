@@ -231,8 +231,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneAudioSetup
   musicPlayer: {fileID: 379683024}
   audiobookPlayer: {fileID: 2032480635}
-  sceneMusicFileName: gollum.
-  sceneAudiobookFileName: TheHobbit
+  sceneMusicClip: {fileID: 8300000, guid: 78b133be572747848983739bae9abbb8, type: 3}
+  sceneMusicChapters: {fileID: 0}
+  sceneAudiobookClip: {fileID: 8300000, guid: 2d0e9d44b819abe4db0a4e97bd05e532, type: 3}
+  sceneAudiobookChapters: {fileID: 4900000, guid: 1a28814dc67c5834bbf7d2dea8bea8cd, type: 3}
   duckedMusicVolume: 0.2
   duckFadeDuration: 2
 --- !u!4 &244245936
