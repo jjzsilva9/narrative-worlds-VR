@@ -4,31 +4,18 @@ A VR experience set in Tolkien's Middle-earth, built with Unity + XR Interaction
 
 ---
 
-## Team & Environments
-
-### Joe — The Shire
-> *[Joe: add your environment notes here — assets used, setup steps, anything teammates need to know]*
-
----
-
-### Morgan — Gollum's Cave
-> *[Morgan: add your environment notes here — assets used, setup steps, anything teammates need to know]*
-
----
-
-### Jaden — Battle Scene / Mordor
-
 #### Audio System
 
 **Scripts** (in `Assets/Scripts/Audio/`):
 
-| Script | Purpose |
-|---|---|
-| `AmbientSoundSpawner.cs` | Randomly fires spatialized 3D sounds around the player for a configurable duration on scene start |
-| `AudiobookPlayer.cs` | Loads audiobook files from `StreamingAssets/Audiobook/`, handles playback, chapters, and user bookmarks |
-| `AudiobookUI.cs` | Drives the World Space Canvas UI for the audiobook player |
+| Script                   | Purpose                                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------------------- |
+| `AmbientSoundSpawner.cs` | Randomly fires spatialized 3D sounds around the player for a configurable duration on scene start       |
+| `AudiobookPlayer.cs`     | Loads audiobook files from `StreamingAssets/Audiobook/`, handles playback, chapters, and user bookmarks |
+| `AudiobookUI.cs`         | Drives the World Space Canvas UI for the audiobook player                                               |
 
 **Prefabs** (see setup guide below):
+
 - `AmbientSoundSystem` — Drag into any scene, assign clips in Inspector
 - `AudiobookPlayer` — Fixed World Space Canvas panel, drop anywhere in scene
 
@@ -44,6 +31,7 @@ StreamingAssets/Audiobook/
 ```
 
 **`mybook.chapters.txt` format:**
+
 ```
 # Lines starting with # are ignored
 Prologue,0
@@ -62,26 +50,28 @@ Chapter 2 - Riddles in the Dark,340.0
 ## Shared Systems
 
 ### Lobby (`LobbyUIManager.cs`)
+
 Manages title screen → environment selection → scene transition with fade and audio fade-in. Attach to a GameObject in the lobby scene; wire panels and audio sources in Inspector.
 
 ### Pause Menu (`PauseMenuManager.cs`)
+
 Toggled via XRI menu button. Provides "Return to Lobby" and master volume control. Present in each environment scene.
 
 ---
 
 ## Scene Names (must match Build Settings)
 
-| Scene | File |
-|---|---|
-| Lobby/Shire | `Assets/Scenes/ACTUAL SCENES/Shire.unity` |
-| Gollum's Cave | `Assets/Scenes/ACTUAL SCENES/GollumCave.unity` |
-| Mordor | `Assets/Scenes/ACTUAL SCENES/Mordor.unity` |
+| Scene         | File                                       |
+| ------------- | ------------------------------------------ |
+| Lobby/Shire   | `Assets/Scenes/ACTUAL SCENES/Shire.unity`  |
+| Gollum's Cave | `Assets/Scenes/gollumscenetest.unity`      |
+| Mordor        | `Assets/Scenes/ACTUAL SCENES/Mordor.unity` |
 
 ---
 
 ## Project Setup
 
-- Unity version: *6000.2.2f1* 
+- Unity version: _6000.2.2f1_
 - XR Plugin: OpenXR / XR Interaction Toolkit
 - TextMesh Pro required (already in project)
 - No additional packages needed for the audio system
