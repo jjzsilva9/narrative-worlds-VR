@@ -989,6 +989,7 @@ GameObject:
   - component: {fileID: 4867885331963311479}
   - component: {fileID: 1435250714282179854}
   - component: {fileID: 3371318168772392672}
+  - component: {fileID: 5161948446333502229}
   m_Layer: 0
   m_Name: AudiobookPlayerRoot
   m_TagString: Untagged
@@ -1149,11 +1150,38 @@ MonoBehaviour:
   bookmarkListContainer: {fileID: 4273322006203464015}
   bookmarkRowPrefab: {fileID: 2431982726618952031, guid: 96510c40b25346a4e9f7421b3c585e2e, type: 3}
   loadingOverlay: {fileID: 5683467303354261822}
-  iconPlay: "\u25B6"
-  iconPause: "\u23F8"
-  iconPlaying: "\u25CF"
-  iconChapter: "\u25B8"
-  iconBookmark: "\u2605"
+  audiobookFileNames:
+  - FellowshipOfTheRings
+  - TwoTowers
+  - TheHobbit
+  audiobookDisplayNames:
+  - The Fellowship of the Ring
+  - The Two Towers
+  - The Hobbit
+  iconPlay: '>'
+  iconPause: '||'
+  iconPlaying: '*'
+  iconChapter: '*'
+  iconBookmark: '*'
+--- !u!114 &5161948446333502229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566727236104544620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &2626604468027776973
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,7 +2073,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1956701288229602048}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.48099992
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

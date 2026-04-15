@@ -1,0 +1,16 @@
+# ───────────────────────────────────────────────────────────────────
+#  AUDIOBOOK CHAPTER FILE
+#  Rename this file to match your audio file, e.g.:
+#    mybook.mp3  →  mybook.chapters.txt
+#
+#  FORMAT:  Chapter Name,timestamp_in_seconds
+#  - Timestamps are in SECONDS (decimals allowed, e.g. 125.5)
+#  - Lines starting with # are ignored
+#  - This file is READ-ONLY in the app — user bookmarks are saved
+#    to a separate  mybook.bookmarks.txt  file automatically
+# ───────────────────────────────────────────────────────────────────
+
+Prologue,0
+Chapter 1,125.5
+Chapter 2,340.0
+Chapter 3,600.0
