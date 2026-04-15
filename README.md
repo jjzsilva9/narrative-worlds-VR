@@ -4,20 +4,6 @@ A VR experience set in Tolkien's Middle-earth, built with Unity + XR Interaction
 
 ---
 
-## Team & Environments
-
-### Joe — The Shire
-> *[Joe: add your environment notes here — assets used, setup steps, anything teammates need to know]*
-
----
-
-### Morgan — Gollum's Cave
-> *[Morgan: add your environment notes here — assets used, setup steps, anything teammates need to know]*
-
----
-
-### Jaden — Battle Scene / Mordor
-
 #### Audio System
 
 **Scripts** (in `Assets/Scripts/Audio/`):
